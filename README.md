@@ -63,7 +63,7 @@ You may set the following parameters to customize the user id that runs sabnzbd.
 | `SABNZBD_HOME` | SABnzbd config files | `SABNZBD_HOME=/data/sabnzbd-home` |
 | `SABNZBD_BIND_ADDRESS` | IP Address SABnzbd listens on | `SABNZBD_BIND_ADDRESS=0.0.0.0` |
 | `SABNZBD_PORT` | Port SABnzbd listens on | `SABNZBD_PORT=8080` |
-| `SABNZBD_OPTS` | SABnzbd startup options | `SABNZBD_OPTS='-b 0'` |
+| `SABNZBD_OPTS` | SABnzbd startup options | `SABNZBD_OPTS='-l 0 -b 0'` |
 
 ### create_cert.sh SSL options
 
