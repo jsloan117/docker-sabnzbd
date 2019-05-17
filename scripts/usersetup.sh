@@ -28,13 +28,14 @@ if [ -n "${PUID}" ] && [ ! "$(id -u root)" -eq "${PUID}" ]; then
   done
 
   echo "[INFO] Setting owner for sabnzbd paths to ${PUID}:${PGID}"
-  echo "[INFO] Setting permission for files (644) and directories (755)"
+  echo "[INFO] Setting permissions for files (644) and directories (755)"
   for xdir in "${dirlist[@]}"; do
     chown -R "${RUN_AS}":"${RUN_AS}" "${xdir}"
     chmod -R go=rX,u=rwX "${xdir}"
   done
 
   echo "[INFO] Setting permissions on SABnzbd.py to 755"
+  chown -R "${RUN_AS}":"${RUN_AS}" /sabnzbd
   chmod 755 /sabnzbd/SABnzbd.py
 fi
 
