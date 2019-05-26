@@ -1,8 +1,8 @@
 FROM alpine:latest
-LABEL Name=sabnzbd Version=1.0
+LABEL Name=sabnzbd Version=1.1
 LABEL maintainer="Jonathan Sloan"
 
-ENV SABVER=2.3.8 PAR2=0.8.0
+ENV SABVER=2.3.9 PAR2=0.8.0
 
 RUN apk add --no-cache ca-certificates py2-six py2-cryptography py-enum34 \
                        py2-cffi py2-cheetah py2-openssl openssl unzip unrar p7zip python2 \
