@@ -1,0 +1,85 @@
+# Azure DevOps Build Pipeline for SABnzbd Docker container
+
+schedules:
+  - cron: '0 0 * * 6'
+    displayName: 'Weekly build at midnight'
+    branches:
+      include:
+        - '*'
+    always: true
+
+trigger:
+  branches:
+    include:
+      - '*'
+  tags:
+    include:
+      - '*'
+
+pr:
+  branches:
+    include:
+      - '*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:  
+  repo: 'jsloan117/sabnzbd'
+
+steps:
+  - task: Docker@2
+    displayName: Login
+    inputs:
+      containerRegistry: 'Docker Hub'
+      command: login
+    enabled: true
+
+  - task: Docker@2
+    displayName: 'Build Alpine Image dev'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))
+    inputs:
+      containerRegistry: 'Docker Hub'
+      repository: '$(repo)'
+      command: build
+      Dockerfile: Dockerfile
+      tags: '$(Build.SourceBranchName)'
+    enabled: true
+
+  - task: Docker@2
+    displayName: 'Push Alpine Image dev'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/dev'))
+    inputs:
+      containerRegistry: 'Docker Hub'
+      repository: '$(repo)'
+      command: push
+      tags: '$(Build.SourceBranchName)'
+    enabled: true
+
+  - task: Docker@2
+    displayName: 'Build Alpine Image latest'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    inputs:
+      containerRegistry: 'Docker Hub'
+      repository: '$(repo)'
+      command: build
+      Dockerfile: Dockerfile
+      tags: 'latest'
+    enabled: true
+
+  - task: Docker@2
+    displayName: 'Push Alpine Image latest'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    inputs:
+      containerRegistry: 'Docker Hub'
+      repository: '$(repo)'
+      command: push
+      tags: 'latest'
+    enabled: true
+
+  - task: Docker@2
+    displayName: Logout
+    inputs:
+      containerRegistry: 'Docker Hub'
+      command: logout
+    enabled: true
