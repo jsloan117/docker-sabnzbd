@@ -1,0 +1,17 @@
+site_name:  docker-sabnzbd
+site_url: http://jsloan117.github.io/docker-sabnzbd
+repo_url: https://github.com/jsloan117/docker-sabnzbd
+theme:
+  name: 'material'
+markdown_extensions:
+  - codehilite:
+      linenums: true
+  - toc:
+      permalink: true
+      separator: "_"
+nav:
+  - 'Home': 'index.md'
+  - 'Run from Docker registry': 'run-from-docker-registry.md'
+  - 'Configuration': 'configuration.md'
+plugins:
+  - search

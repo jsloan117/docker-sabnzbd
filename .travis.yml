@@ -1,0 +1,19 @@
+language: minimal
+dist: bionic
+
+env:
+  global:
+    - IMAGE_NAME=jsloan117/sabnzbd
+
+jobs:
+  include:
+    - stage: build docker images
+      services: docker
+      script: ./scripts/build-and-push.sh
+
+    - stage: build documentation
+      if: branch = dev
+      language: python
+      python: 3.7.5
+      cache: pip
+      script: ./scripts/doc-build-and-deploy.sh

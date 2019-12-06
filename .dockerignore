@@ -1,3 +1,11 @@
 .git
 .cache
+*.aes
 .azure-pipelines.yml
+.travis.yml
+.yamllint
+.prettierrc
+docs/
+site/
+scripts/build-and-push.sh
+scripts/doc-build-and-deploy.sh

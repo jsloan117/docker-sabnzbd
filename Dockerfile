@@ -1,5 +1,5 @@
-FROM alpine:latest
-LABEL Name=sabnzbd Version=1.1
+FROM alpine:3.10
+LABEL Name=sabnzbd Version=1.2
 LABEL maintainer="Jonathan Sloan"
 
 ENV SABVER=2.3.9 PAR2=0.8.0
@@ -9,21 +9,21 @@ RUN apk add --no-cache ca-certificates py2-six py2-cryptography py-enum34 \
                        py2-pip build-base libgomp automake autoconf python2-dev \
                        bash tini shadow supervisor \
     && wget -O- https://github.com/sabnzbd/sabnzbd/releases/download/$SABVER/SABnzbd-$SABVER-src.tar.gz | tar -zx \
-    && mv SABnzbd-*/ /sabnzbd \
+    && mv SABnzbd-$SABVER/ /sabnzbd \
     && wget -O- https://github.com/Parchive/par2cmdline/releases/download/v$PAR2/par2cmdline-$PAR2.tar.gz | tar -zx \
     && cd par2cmdline-$PAR2 \
     && aclocal \
     && automake --add-missing \
     && autoconf \
     && ./configure \
-    && make \
+    && make -j2 \
     && make install \
     && cd .. \
     && rm -rf par2cmdline-$PAR2 \
     && pip --no-cache-dir install --upgrade sabyenc \
     && echo "*** cleanup ***" \
-    && rm -rf /tmp/* /var/tmp/* /var/cache/apk/* \
     && apk del build-base automake autoconf python2-dev \
+    && rm -rf /tmp/* /var/tmp/* /var/cache/apk/* \
     && useradd -u 911 -U -d /sabnzbd -s /bin/false abc
 
 ADD configs /configs
