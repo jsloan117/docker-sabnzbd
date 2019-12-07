@@ -18,6 +18,7 @@ build_images () {
 
 test_images () {
   echo -e '\n<<< Testing default image >>>\n'
+  export GOSS_SLEEP=5
   curl -sL https://github.com/aelsabbahy/goss/releases/download/v0.3.8/goss-linux-amd64 -o ~/bin/goss
   chmod +rx ~/bin/goss
   curl -sL https://github.com/aelsabbahy/goss/releases/download/v0.3.8/dgoss -o ~/bin/dgoss
