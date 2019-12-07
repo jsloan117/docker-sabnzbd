@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:latest
 LABEL Name=sabnzbd Version=1.2
 LABEL maintainer="Jonathan Sloan"
 

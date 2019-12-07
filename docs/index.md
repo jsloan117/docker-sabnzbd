@@ -32,9 +32,6 @@ docker run -d --name sabnzbd \
 -v /path/to/sabnzbd/downloaded:/data/completed \
 -v /path/to/sabnzbd/downloading:/data/incomplete \
 -v /path/to/sabnzbd:/config \
--e SAB_DOWNLOAD_DIR=/data/completed \
--e SAB_INCOMPLETE_DIR=/data/incomplete \
--e SAB_WATCH_DIR=/data/watched \
 -p 8080:8080 \
 jsloan117/sabnzbd
 ```

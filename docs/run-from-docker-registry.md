@@ -8,10 +8,7 @@ docker run -d --name sabnzbd \
 -v /path/to/sabnzbd:/config \
 -v /etc/resolv.conf:/etc/resolv.conf:ro \
 -v /etc/localtime:/etc/localtime:ro \
--e PUID=996 -e PGID=994 \
--e SAB_DOWNLOAD_DIR=/data/completed \
--e SAB_INCOMPLETE_DIR=/data/incomplete \
--e SAB_WATCH_DIR=/data/watched \
+-e PUID=1000 -e PGID=1000 \
 -p 8080:8080 \
 jsloan117/sabnzbd
 ```
