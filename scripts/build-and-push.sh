@@ -21,10 +21,12 @@ build_images () {
 test_images () {
   echo -e '\n<<< Testing default image >>>\n'
   #docker run --rm "${IMAGE_NAME}":"${IMAGE_TAG}"
-  curl -L https://github.com/aelsabbahy/goss/releases/download/v0.3.8/goss-linux-amd64 -o /usr/local/bin/goss
-  chmod +rx /usr/local/bin/goss
-  curl -L https://github.com/aelsabbahy/goss/releases/download/v0.3.8/dgoss -o /usr/local/bin/dgoss
-  chmod +rx /usr/local/bin/dgoss
+  echo "$PATH"
+  ls -xm "$HOME"
+  curl -L https://github.com/aelsabbahy/goss/releases/download/v0.3.8/goss-linux-amd64 -o ~/goss
+  chmod +rx ~/goss
+  curl -L https://github.com/aelsabbahy/goss/releases/download/v0.3.8/dgoss -o ~/dgoss
+  chmod +rx ~/dgoss
   dgross run -d --name sabnzbd "${IMAGE_NAME}":"${IMAGE_TAG}"
   #echo -e '\n<<< Testing ubuntu image >>>\n'
   #docker run --rm "${IMAGE_NAME}":ubuntu-"${IMAGE_TAG}"
