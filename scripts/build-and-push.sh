@@ -25,7 +25,8 @@ test_images () {
   chmod +rx ~/bin/goss
   curl -sL https://github.com/aelsabbahy/goss/releases/download/v0.3.8/dgoss -o ~/bin/dgoss
   chmod +rx ~/bin/dgoss
-  dgoss run -d --name sabnzbd -v "${TRAVIS_BUILD_DIR}"/goss.yml:/goss/goss.yml "${IMAGE_NAME}":"${IMAGE_TAG}"
+  #dgoss run -d --name sabnzbd -v "${TRAVIS_BUILD_DIR}"/goss.yml:/goss/goss.yml "${IMAGE_NAME}":"${IMAGE_TAG}"
+  dgoss run "${IMAGE_NAME}":"${IMAGE_TAG}"
   #echo -e '\n<<< Testing ubuntu image >>>\n'
   #docker run --rm "${IMAGE_NAME}":ubuntu-"${IMAGE_TAG}"
 }
