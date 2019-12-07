@@ -5,8 +5,6 @@ file:
     owner: abc
     group: abc
     filetype: file
-    size: 6840
-    sha256: 427f79af5d66f7a2210d3355b06c646a1eead665b5c951998905038263a224c2
   /etc/supervisor.conf:
     exists: true
     mode: "0644"
