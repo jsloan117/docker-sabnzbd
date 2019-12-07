@@ -14,29 +14,21 @@ export IMAGE_TAG
 build_images () {
   echo -e '\n<<< Building default image >>>\n'
   docker build -f Dockerfile -t "${IMAGE_NAME}":"${IMAGE_TAG}" .
-  #echo -e '\n<<< Building ubuntu image >>>\n'
-  #docker build -f Dockerfile.ubuntu -t "${IMAGE_NAME}":ubuntu-"${IMAGE_TAG}" .
 }
 
 test_images () {
   echo -e '\n<<< Testing default image >>>\n'
-  #docker run --rm "${IMAGE_NAME}":"${IMAGE_TAG}"
   curl -sL https://github.com/aelsabbahy/goss/releases/download/v0.3.8/goss-linux-amd64 -o ~/bin/goss
   chmod +rx ~/bin/goss
   curl -sL https://github.com/aelsabbahy/goss/releases/download/v0.3.8/dgoss -o ~/bin/dgoss
   chmod +rx ~/bin/dgoss
-  #dgoss run -d --name sabnzbd -v "${TRAVIS_BUILD_DIR}"/goss.yml:/goss/goss.yml "${IMAGE_NAME}":"${IMAGE_TAG}"
-  dgoss run "${IMAGE_NAME}":"${IMAGE_TAG}"
-  #echo -e '\n<<< Testing ubuntu image >>>\n'
-  #docker run --rm "${IMAGE_NAME}":ubuntu-"${IMAGE_TAG}"
+  dgoss run -e PUID=1000 -e PGID=1000 "${IMAGE_NAME}":"${IMAGE_TAG}"
 }
 
 push_images () {
   echo "${DOCKER_PASS}" | docker login -u "${DOCKER_USER}" --password-stdin &> /dev/null
   echo -e '\n<<< Pushing default image >>>\n'
   docker push "${IMAGE_NAME}":"${IMAGE_TAG}"
-  #echo -e '\n<<< Pushing ubuntu image >>>\n'
-  #docker push "${IMAGE_NAME}":ubuntu-"${IMAGE_TAG}"
 }
 
 build_images

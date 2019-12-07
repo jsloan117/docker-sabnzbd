@@ -1,0 +1,8 @@
+file:
+  /goss/docker_output.log:
+    exists: true
+    contains:
+      - '[INFO] Starting SABnzbd...'
+  command:
+    sleep 5:
+      exit-status: 0
