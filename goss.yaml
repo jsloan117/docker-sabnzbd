@@ -23,7 +23,7 @@ file:
     sha256: b2793dadf133038a75a5de8d378747c19b42650433df4303febaf1ecd0eaf754
   /scripts/init.sh:
     exists: true
-    mode: "0755"
+    mode: "0775"
     owner: root
     group: root
     filetype: file
@@ -31,7 +31,7 @@ file:
     sha256: bfa42e229d22c8a9f65b8d03a529a1c79c76f137cc754ae10a55544baa81d5b3
   /scripts/usersetup.sh:
     exists: true
-    mode: "0755"
+    mode: "0775"
     owner: root
     group: root
     filetype: file
@@ -39,7 +39,7 @@ file:
     sha256: 5d3ab0f20f66e8a116aa0951c6276d240bd75348e2b0b6c07d8baa8e415d0011
   /scripts/sabnzbd.sh:
     exists: true
-    mode: "0755"
+    mode: "0775"
     owner: root
     group: root
     filetype: file
@@ -47,7 +47,7 @@ file:
     sha256: 91e75f09dd8baf434f3e8cd1a3d3d46dc5139cb34c425c4266cafb2b2b036f49
   /scripts/create_cert.sh:
     exists: true
-    mode: "0755"
+    mode: "0775"
     owner: root
     group: root
     filetype: file
