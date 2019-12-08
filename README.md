@@ -5,7 +5,6 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/jsloan117/sabnzbd.svg)](https://img.shields.io/docker/pulls/jsloan117/sabnzbd.svg)
 [![](https://images.microbadger.com/badges/image/jsloan117/sabnzbd.svg)](https://microbadger.com/images/jsloan117/sabnzbd "Get your own image badge on microbadger.com")
 [![HitCount](http://hits.dwyl.io/jsloan117/docker-sabnzbd.svg)](http://hits.dwyl.io/jsloan117/docker-sabnzbd)
-[![Known Vulnerabilities](https://snyk.io/test/github/{username}/{repo}/badge.svg)](https://snyk.io/test/github/jsloan117/docker-sabnzbd/dev)
 
 This container is based on the tiny Alpine distro with SABnzbd.
 
