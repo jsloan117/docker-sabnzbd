@@ -23,4 +23,4 @@ jobs:
       language: python
       python: 3.7.5
       cache: pip
-      script: .travis/doc-build-and-deploy.sh
+      script: .travis/build-and-deploy-docs.sh
