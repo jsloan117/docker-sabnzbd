@@ -15,7 +15,7 @@ if [ -n "${PUID}" ] && [ ! "$(id -u root)" -eq "${PUID}" ]; then
   "${SAB_WATCH_DIR}" "${SAB_NZB_BACKUP}" )
 
   dirlist=()
-  for xdir in "${dlist}"; do
+  for xdir in "${dlist[@]}"; do
     if [[ -n "${xdir}" ]]; then
       dirlist+=( "${xdir}" )
     fi
