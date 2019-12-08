@@ -1,5 +1,5 @@
 FROM alpine:latest
-LABEL Name=sabnzbd Version=1.2
+LABEL Name=sabnzbd Version=1.3
 LABEL maintainer="Jonathan Sloan"
 
 ENV SABVER=2.3.9 PAR2=0.8.0
@@ -23,11 +23,11 @@ RUN apk add --no-cache ca-certificates py2-six py2-cryptography py-enum34 \
     && pip --no-cache-dir install --upgrade sabyenc \
     && echo "*** cleanup ***" \
     && apk del build-base automake autoconf python2-dev \
-    && rm -rf /tmp/* /var/tmp/* /var/cache/apk/* \
+    && rm -rf /tmp/* /var/tmp/* /var/cache/apk/* $HOME/.cache \
     && useradd -u 911 -U -d /sabnzbd -s /bin/false abc
 
-ADD configs /configs
-ADD scripts /scripts
+COPY configs /configs
+COPY scripts /scripts
 
 ENV SABNZBD_HOME=/config \
     SABNZBD_BIND_ADDRESS=0.0.0.0 \

@@ -1,3 +1,4 @@
 .cache
 site/
 *.aes
+*.enc

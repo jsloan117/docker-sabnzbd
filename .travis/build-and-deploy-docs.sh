@@ -1,11 +1,11 @@
 #!/bin/bash
 # build and deploy documentation using mkdocs
 # TODO: prevent unnessary building by comparing remote gh-pages branch -- (git diff ignore sitemap.xml.gz)
-set -eo pipefail
+
+set -euo pipefail
 
 REPO=$(git config remote.origin.url)
 SSH_REPO="${REPO/https:\/\/github.com\//git@github.com:}"
-#SSH_REPO='git@github.com:jsloan117/test-CI.git'
 GIT_USER_NAME='Travis CI'
 
 build_documentation () {
