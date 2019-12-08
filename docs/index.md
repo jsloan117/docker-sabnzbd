@@ -9,17 +9,14 @@
   <a href="https://github.com/jsloan117/docker-sabnzbd/blob/master/LICENSE">
     <img alt="license" src="https://img.shields.io/badge/License-GPLv3-blue.svg" />
   </a>
-  <a href="https://travis-ci.org/jsloan117/docker-sabnzbd">
-    <img alt="build" src="https://travis-ci.org/jsloan117/docker-sabnzbd.svg?branch=master" />
+  <a href="https://travis-ci.com/jsloan117/docker-sabnzbd">
+    <img alt="build" src="https://travis-ci.com/jsloan117/docker-sabnzbd.svg?branch=master" />
   </a>
   <a href="https://hub.docker.com/repository/docker/jsloan117/sabnzbd">
     <img alt="pulls" src="https://img.shields.io/docker/pulls/jsloan117/sabnzbd.svg" />
   </a>
   <a href="https://microbadger.com/images/jsloan117/sabnzbd">
     <img alt="image" src="https://images.microbadger.com/badges/image/jsloan117/sabnzbd.svg" />
-  </a>
-  <a href="http://hits.dwyl.io/jsloan117/docker-sabnzbd">
-    <img alt="hits" src="http://hits.dwyl.io/jsloan117/docker-sabnzbd.svg" />
   </a>
 </p>
 

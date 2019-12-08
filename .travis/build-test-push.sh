@@ -36,11 +36,13 @@ install_prereqs () {
 
 vulnerability_scanner () {
   echo -e '\n<<< Checking image for vulnerabilities >>>\n'
-  [[ "${IMAGE_NAME}" = latest ]] && trivy --clear-cache
+  [[ "${IMAGE_TAG}" = latest ]] && trivy --clear-cache
   trivy --exit-code 0 --severity "UNKNOWN,LOW,MEDIUM,HIGH" --no-progress "${IMAGE_NAME}":"${IMAGE_TAG}"
   trivy --exit-code 1 --severity CRITICAL --no-progress "${IMAGE_NAME}":"${IMAGE_TAG}"
-  snyk auth "${SNYK_TOKEN}"
-  snyk monitor --docker "${IMAGE_NAME}":"${IMAGE_TAG}" --file=Dockerfile
+  if [[ "${TRAVIS_BRANCH}" = master ]]; then
+    snyk auth "${SNYK_TOKEN}"
+    snyk monitor --docker "${IMAGE_NAME}":"${IMAGE_TAG}" --file=Dockerfile
+  fi
 }
 
 test_images () {

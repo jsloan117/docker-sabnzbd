@@ -5,8 +5,8 @@ docs/
 *.enc
 .git/
 .gitignore
-#goss.yaml
-#goss_wait.yaml
+goss.yaml
+goss_wait.yaml
 *.md
 mkdocs.yml
 .prettierrc

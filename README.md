@@ -1,10 +1,9 @@
 # docker-sabnzbd
 
 ![License](https://img.shields.io/badge/License-GPLv3-blue.svg)
-[![Build Status](https://travis-ci.org/jsloan117/docker-sabnzbd.svg?branch=master)](https://travis-ci.org/jsloan117/docker-sabnzbd)
+[![Build Status](https://travis-ci.com/jsloan117/docker-sabnzbd.svg?branch=master)](https://travis-ci.com/jsloan117/docker-sabnzbd)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jsloan117/sabnzbd.svg)](https://img.shields.io/docker/pulls/jsloan117/sabnzbd.svg)
 [![](https://images.microbadger.com/badges/image/jsloan117/sabnzbd.svg)](https://microbadger.com/images/jsloan117/sabnzbd "Get your own image badge on microbadger.com")
-[![HitCount](http://hits.dwyl.io/jsloan117/docker-sabnzbd.svg)](http://hits.dwyl.io/jsloan117/docker-sabnzbd)
 
 This container is based on the tiny Alpine distro with SABnzbd.
 
