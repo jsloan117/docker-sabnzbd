@@ -27,11 +27,11 @@ install_prereqs () {
   export GOSS_VER=0.3.8
   curl -sL "https://github.com/aelsabbahy/goss/releases/download/v${GOSS_VER}/goss-linux-amd64" -o "${HOME}/bin/goss"
   curl -sL "https://github.com/aelsabbahy/goss/releases/download/v${GOSS_VER}/dgoss" -o "$HOME/bin/dgoss"
-  chmod +rx "$HOME"/bin/*goss
   # snyk (vuln scanner)
   SNYK_VER=$(curl --silent "https://api.github.com/repos/snyk/snyk/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
   export SNYK_VER
   curl -sL "https://github.com/snyk/snyk/releases/download/v$SNYK_VER/snyk-linux" -o "$HOME/bin/snyk"
+  chmod +rx "$HOME"/bin/{goss,dgoss,snyk}
 }
 
 vulnerability_scanner () {
