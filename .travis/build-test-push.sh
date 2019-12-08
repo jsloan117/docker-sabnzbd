@@ -39,7 +39,7 @@ vulnerability_scanner () {
   [[ "${IMAGE_NAME}" = latest ]] && trivy --clear-cache
   trivy --exit-code 0 --severity "UNKNOWN,LOW,MEDIUM,HIGH" --no-progress "${IMAGE_NAME}":"${IMAGE_TAG}"
   trivy --exit-code 1 --severity CRITICAL --no-progress "${IMAGE_NAME}":"${IMAGE_TAG}"
-  snyk auth "${SYNK_TOKEN}"
+  snyk auth "${SNYK_TOKEN}"
   snyk monitor --docker "${IMAGE_NAME}":"${IMAGE_TAG}" --file=Dockerfile
 }
 
