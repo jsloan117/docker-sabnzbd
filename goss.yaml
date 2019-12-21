@@ -69,9 +69,9 @@ command:
     stdout:
       - "/usr/bin/python -OO /sabnzbd/SABnzbd.py"
     stderr: []
-    timeout: 10000
+    timeout: 3000
 
 http:
   http://127.0.0.1:8080:
     status: 200
-    timeout: 10000
+    timeout: 5000

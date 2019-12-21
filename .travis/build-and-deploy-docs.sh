@@ -10,7 +10,7 @@ GIT_USER_NAME='Travis CI'
 
 build_documentation () {
   mkdir -p "${HOME}/.ssh"
-  echo "${DEPLOY_KEY}" | base64 --decode > "${HOME}/.ssh/id_rsa" 2> /dev/null
+  echo "${DEPLOY_KEY}" | base64 --decode > "${HOME}/.ssh/id_rsa" 2>&-
   chmod 600 "${HOME}/.ssh/id_rsa"
   echo -e '\n<<< Setting remote origin to SSH >>>'
   git remote set-url origin "${SSH_REPO}"

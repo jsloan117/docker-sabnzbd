@@ -1,5 +1,5 @@
 #!/bin/bash
-# build and push docker images
+# build, test and push docker images
 
 set -euo pipefail
 
@@ -17,18 +17,19 @@ build_images () {
 }
 
 install_prereqs () {
-  echo -e '\n<<< Installing trivy & (d)goss prerequisites >>>\n'
+  echo -e '\n<<< Installing (d)goss & trivy prerequisites >>>\n'
+  # goss/dgoss (server-spec for containers)
+  GOSS_VER=$(curl -s "https://api.github.com/repos/aelsabbahy/goss/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+  export GOSS_VER
+  curl -sL "https://github.com/aelsabbahy/goss/releases/download/v${GOSS_VER}/goss-linux-amd64" -o "${HOME}/bin/goss"
+  curl -sL "https://github.com/aelsabbahy/goss/releases/download/v${GOSS_VER}/dgoss" -o "$HOME/bin/dgoss"
   # trivy (vuln scanner)
-  TRIVY_VER=$(curl --silent "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+  TRIVY_VER=$(curl -s "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
   export TRIVY_VER
   wget -q "https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VER}/trivy_${TRIVY_VER}_Linux-64bit.tar.gz"
   tar -C "${HOME}/bin" -zxf "trivy_${TRIVY_VER}_Linux-64bit.tar.gz" trivy
-  # goss/dgoss (server-spec for containers)
-  export GOSS_VER=0.3.8
-  curl -sL "https://github.com/aelsabbahy/goss/releases/download/v${GOSS_VER}/goss-linux-amd64" -o "${HOME}/bin/goss"
-  curl -sL "https://github.com/aelsabbahy/goss/releases/download/v${GOSS_VER}/dgoss" -o "$HOME/bin/dgoss"
   # snyk (vuln scanner)
-  SNYK_VER=$(curl --silent "https://api.github.com/repos/snyk/snyk/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
+  SNYK_VER=$(curl -s "https://api.github.com/repos/snyk/snyk/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
   export SNYK_VER
   curl -sL "https://github.com/snyk/snyk/releases/download/v$SNYK_VER/snyk-linux" -o "$HOME/bin/snyk"
   chmod +rx "$HOME"/bin/{goss,dgoss,snyk}
@@ -40,7 +41,7 @@ vulnerability_scanner () {
   trivy --exit-code 0 --severity "UNKNOWN,LOW,MEDIUM,HIGH" --no-progress "${IMAGE_NAME}":"${IMAGE_TAG}"
   trivy --exit-code 1 --severity CRITICAL --no-progress "${IMAGE_NAME}":"${IMAGE_TAG}"
   if [[ "${TRAVIS_BRANCH}" = master ]]; then
-    snyk auth "${SNYK_TOKEN}"
+    snyk auth "${SNYK_TOKEN}" &> /dev/null
     snyk monitor --docker "${IMAGE_NAME}":"${IMAGE_TAG}" --file=Dockerfile
   fi
 }

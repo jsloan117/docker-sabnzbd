@@ -3,20 +3,19 @@
 ![License](https://img.shields.io/badge/License-GPLv3-blue.svg)
 [![Build Status](https://travis-ci.com/jsloan117/docker-sabnzbd.svg?branch=master)](https://travis-ci.com/jsloan117/docker-sabnzbd)
 [![Docker Pulls](https://img.shields.io/docker/pulls/jsloan117/sabnzbd.svg)](https://img.shields.io/docker/pulls/jsloan117/sabnzbd.svg)
-[![](https://images.microbadger.com/badges/image/jsloan117/sabnzbd.svg)](https://microbadger.com/images/jsloan117/sabnzbd "Get your own image badge on microbadger.com")
 
-This container is based on the tiny Alpine distro with SABnzbd.
+SABnzbd on Alpine Linux
 
 ## Quick start
+
+The below is a quick method to get this up and running. Please see the full documentation for more options.
 
 ``` bash
 docker run -d --name sabnzbd \
 -v /path/to/sabnzbd/downloaded:/data/completed \
 -v /path/to/sabnzbd/downloading:/data/incomplete \
 -v /path/to/sabnzbd:/config \
--e SAB_DOWNLOAD_DIR=/data/completed \
--e SAB_INCOMPLETE_DIR=/data/incomplete \
--e SAB_WATCH_DIR=/data/watched \
+-e PUID=911 -e PGID=911 \
 -p 8080:8080 \
 jsloan117/sabnzbd
 ```

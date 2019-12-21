@@ -2,13 +2,12 @@ There are many variables and options available to customize how SABnzbd is ran.
 
 ## User configuration options
 
-By default everything will run as the root user. However, it is possible to change who runs the sabnzbd process.
 You may set the following parameters to customize the user id that runs sabnzbd.
 
 | Variable | Function                               | Example     |
 |----------|----------------------------------------|-------------|
-| `PUID`   | Sets the user id who will run sabnzbd  | `PUID=1000` |
-| `PGID`   | Sets the group id for the sabnzbd user | `PGID=1000` |
+| `PUID`   | Sets the user id who will run sabnzbd  | `PUID=911` |
+| `PGID`   | Sets the group id for the sabnzbd user | `PGID=911` |
 | `UMASK`  | Set file mode mask                     | `UMASK=002` |
 
 ## SABnzbd environment options
