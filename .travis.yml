@@ -14,13 +14,21 @@ jobs:
     - stage: build docker images
       services: docker
       script: .travis/build-test-push.sh
-      cache:
-        directories:
-          - $HOME/.cache/trivy
 
     - stage: build documentation
-      if: branch = master
+      if: branch = master AND type = push
       language: python
       python: 3.7.5
       cache: pip
-      script: .travis/build-and-deploy-docs.sh
+      install: pip3 install mkdocs mkdocs-material pymdown-extensions pygments
+      script: skip
+      before_deploy: mkdocs build -vcs
+      deploy:
+        provider: pages
+        edge: true
+        token: $GIT_TOKEN
+        keep_history: false
+        local_dir: site
+        commit_message: "Deployed %{git_sha} to %{target_branch} [skip ci]"
+        on:
+          branch: master

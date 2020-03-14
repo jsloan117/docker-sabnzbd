@@ -10,7 +10,7 @@ SABnzbd on Alpine Linux
 
 The below is a quick method to get this up and running. Please see the full documentation for more options.
 
-``` bash
+```bash
 docker run -d --name sabnzbd \
 -v /path/to/sabnzbd/downloaded:/data/completed \
 -v /path/to/sabnzbd/downloading:/data/incomplete \

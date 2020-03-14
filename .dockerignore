@@ -16,3 +16,4 @@ site/
 .travis.yml
 .trivyignore
 .yamllint
+.ssh

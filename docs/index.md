@@ -21,7 +21,7 @@
 
 The below is a quick method to get this up and running. Please see the other documentation links for further details.
 
-``` bash
+```bash
 docker run -d --name sabnzbd \
 -v /path/to/sabnzbd/downloaded:/data/completed \
 -v /path/to/sabnzbd/downloading:/data/incomplete \

@@ -1,7 +1,8 @@
-The container is available from the Docker registry and this is the simplest way to get it.
-To run the container use one of the following commands:
+The image is available from the Docker registry and this is the simplest way to get it.
 
-``` bash
+To run the image use one of the following commands:
+
+```bash
 docker run -d --name sabnzbd \
 -v /path/to/sabnzbd/downloaded:/data/completed \
 -v /path/to/sabnzbd/downloading:/data/incomplete \
@@ -15,7 +16,7 @@ jsloan117/sabnzbd
 
 Using a docker environment file:
 
-``` bash
+```bash
 docker run -d --name sabnzbd \
 -v /path/to/sabnzbd/downloaded:/data/completed \
 -v /path/to/sabnzbd/downloading:/data/incomplete \
