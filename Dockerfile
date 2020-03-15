@@ -7,7 +7,7 @@ ARG PAR2=0.8.1
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
 RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python2 \
-                       py2-pip build-base libgomp automake autoconf python2-dev \
+                       py2-pip build-base libgomp libffi automake autoconf python2-dev \
                        bash tini shadow supervisor \
     && pip --no-cache-dir install six cryptography enum34 cffi Cheetah3 pyOpenSSL \
     && wget -O- "https://github.com/sabnzbd/sabnzbd/releases/download/${SABVER}/SABnzbd-${SABVER}-src.tar.gz" | tar -zx \
