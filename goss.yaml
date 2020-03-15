@@ -11,8 +11,8 @@ file:
     owner: root
     group: root
     filetype: file
-    size: 228
-    sha256: c2a58bf08891cd6488cc445483b38359c92f7c754cac7073e499bbe72e2a245d
+    size: 226
+    sha256: 45fde776a5b19612126711ba4ca9aff150d08eb559fcf2a8fd49c7e074f90c7c
   /etc/supervisor/conf.d/sabnzbd.conf:
     exists: true
     mode: "0644"
@@ -35,8 +35,8 @@ file:
     owner: root
     group: root
     filetype: file
-    size: 1394
-    sha256: 5d3ab0f20f66e8a116aa0951c6276d240bd75348e2b0b6c07d8baa8e415d0011
+    size: 1396
+    sha256: 6b481c6c8cbb104642c48b3d701919e298b0186d26586b81319a059e5944944c
   /scripts/sabnzbd.sh:
     exists: true
     mode: "0775"
@@ -69,9 +69,9 @@ command:
     stdout:
       - "/usr/bin/python -OO /sabnzbd/SABnzbd.py"
     stderr: []
-    timeout: 10000
+    timeout: 3000
 
 http:
   http://127.0.0.1:8080:
     status: 200
-    timeout: 10000
+    timeout: 5000

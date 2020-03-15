@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-  Docker container based on Alpine with SABnzbd
+  SABnzbd on Alpine Linux
   <br/><br/>
 
   <a href="https://github.com/jsloan117/docker-sabnzbd/blob/master/LICENSE">
@@ -15,20 +15,18 @@
   <a href="https://hub.docker.com/repository/docker/jsloan117/sabnzbd">
     <img alt="pulls" src="https://img.shields.io/docker/pulls/jsloan117/sabnzbd.svg" />
   </a>
-  <a href="https://microbadger.com/images/jsloan117/sabnzbd">
-    <img alt="image" src="https://images.microbadger.com/badges/image/jsloan117/sabnzbd.svg" />
-  </a>
 </p>
 
 ## Quick start
 
 The below is a quick method to get this up and running. Please see the other documentation links for further details.
 
-``` bash
+```bash
 docker run -d --name sabnzbd \
 -v /path/to/sabnzbd/downloaded:/data/completed \
 -v /path/to/sabnzbd/downloading:/data/incomplete \
 -v /path/to/sabnzbd:/config \
+-e PUID=911 -e PGID=911 \
 -p 8080:8080 \
 jsloan117/sabnzbd
 ```

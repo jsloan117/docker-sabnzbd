@@ -2,13 +2,12 @@ There are many variables and options available to customize how SABnzbd is ran.
 
 ## User configuration options
 
-By default everything will run as the root user. However, it is possible to change who runs the sabnzbd process.
 You may set the following parameters to customize the user id that runs sabnzbd.
 
 | Variable | Function                               | Example     |
-|----------|----------------------------------------|-------------|
-| `PUID`   | Sets the user id who will run sabnzbd  | `PUID=1000` |
-| `PGID`   | Sets the group id for the sabnzbd user | `PGID=1000` |
+| -------- | -------------------------------------- | ----------- |
+| `PUID`   | Sets the user id who will run sabnzbd  | `PUID=911`  |
+| `PGID`   | Sets the group id for the sabnzbd user | `PGID=911`  |
 | `UMASK`  | Set file mode mask                     | `UMASK=002` |
 
 ## SABnzbd environment options
@@ -16,7 +15,7 @@ You may set the following parameters to customize the user id that runs sabnzbd.
 The below are example settings, while some may actually be the defaults, some variables are unset.
 
 | Variable               | Function                      | Example                               |
-|------------------------|-------------------------------|---------------------------------------|
+| ---------------------- | ----------------------------- | ------------------------------------- |
 | `SABNZBD_HOME`         | SABnzbd config files          | `SABNZBD_HOME=/data/sabnzbd-home`     |
 | `SABNZBD_BIND_ADDRESS` | IP Address SABnzbd listens on | `SABNZBD_BIND_ADDRESS=0.0.0.0`        |
 | `SABNZBD_PORT`         | Port SABnzbd listens on       | `SABNZBD_PORT=8080`                   |
@@ -31,17 +30,17 @@ The below are example settings, while some may actually be the defaults, some va
 
 This script can be manually ran to generate the certificate or automatically.
 
-``` bash
+```bash
 /scripts/create_cert.sh
 ```
 
 | Variable  | Function                              | Defaults |
-|-----------|---------------------------------------|----------|
+| --------- | ------------------------------------- | -------- |
 | `SSL`     | Enables SSL within SABnzbd            | unset    |
 | `GENCERT` | Generates SSL Cert with below options | unset    |
 
 | Variable     | Defaults                   |
-|--------------|----------------------------|
+| ------------ | -------------------------- |
 | `Country`    | `Country=US`               |
 | `State`      | `State=Reach`              |
 | `Locality`   | `Locality=Sector9`         |
