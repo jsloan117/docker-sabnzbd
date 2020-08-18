@@ -9,9 +9,12 @@ SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python3 \
                        py3-pip build-base libgomp libffi-dev openssl-dev automake autoconf python3-dev \
                        bash tini shadow supervisor \
-    && pip --no-cache-dir install six cryptography enum34 cffi Cheetah3 pyOpenSSL \
+                       py3-cheetah py3-cryptography py3-feedparser py3-configobj py3-chardet \
+    && pip3 --no-cache-dir install cherrypy portend notify2 sabyenc3 \
+    # && pip --no-cache-dir install six cryptography enum34 cffi Cheetah3 pyOpenSSL \
     && wget -O- "https://github.com/sabnzbd/sabnzbd/releases/download/${SABVER}/SABnzbd-${SABVER}-src.tar.gz" | tar -zx \
     && mv "SABnzbd-${SABVER}/" /sabnzbd \
+    && /usr/bin/python3 /sabnzbd/tools/make_mo.py \
     && wget -O- "https://github.com/Parchive/par2cmdline/releases/download/v${PAR2}/par2cmdline-${PAR2}.tar.gz" | tar -zx \
     && cd "par2cmdline-${PAR2}" \
     && aclocal \
@@ -22,7 +25,7 @@ RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python3 \
     && make install \
     && cd .. \
     && rm -rf "par2cmdline-${PAR2}" \
-    && pip --no-cache-dir install --upgrade sabyenc \
+    # && pip --no-cache-dir install --upgrade sabyenc3 \
     && echo "*** cleanup ***" \
     && apk del build-base automake autoconf python3-dev \
     && rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/lib/apk/* "$HOME/.cache" \
