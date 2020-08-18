@@ -1,17 +1,18 @@
-FROM alpine:3.11
+FROM alpine:3.12
 LABEL Name=sabnzbd Maintainer="Jonathan Sloan"
 
-ARG SABVER=2.3.9
+ARG SABVER=3.0.0
 ARG PAR2=0.8.1
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
-RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python2 \
-                       py2-pip build-base libgomp libffi-dev openssl-dev automake autoconf python2-dev \
-                       bash tini shadow supervisor \
-    && pip --no-cache-dir install six cryptography enum34 cffi Cheetah3 pyOpenSSL \
+RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python3 python3-dev py3-pip \
+                    py3-cheetah py3-cryptography py3-feedparser py3-configobj py3-chardet py3-wheel \
+                    build-base libgomp libffi-dev openssl-dev automake autoconf bash tini shadow supervisor \
+    && pip3 --no-cache-dir install cherrypy portend notify2 sabyenc3 cheroot==8.4.2 \
     && wget -O- "https://github.com/sabnzbd/sabnzbd/releases/download/${SABVER}/SABnzbd-${SABVER}-src.tar.gz" | tar -zx \
     && mv "SABnzbd-${SABVER}/" /sabnzbd \
+    && /usr/bin/python3 /sabnzbd/tools/make_mo.py \
     && wget -O- "https://github.com/Parchive/par2cmdline/releases/download/v${PAR2}/par2cmdline-${PAR2}.tar.gz" | tar -zx \
     && cd "par2cmdline-${PAR2}" \
     && aclocal \
@@ -22,9 +23,8 @@ RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python2 \
     && make install \
     && cd .. \
     && rm -rf "par2cmdline-${PAR2}" \
-    && pip --no-cache-dir install --upgrade sabyenc \
     && echo "*** cleanup ***" \
-    && apk del build-base automake autoconf python2-dev \
+    && apk del build-base automake autoconf python3-dev \
     && rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/lib/apk/* "$HOME/.cache" \
     && useradd -u 911 -U -d /sabnzbd -s /bin/false abc
 

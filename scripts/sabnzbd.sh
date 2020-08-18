@@ -44,7 +44,7 @@ fi
 
 echo -e "\n[INFO] Starting SABnzbd..."
 # run sabnzbd daemon
-/usr/bin/python -OO /sabnzbd/SABnzbd.py -f ${SABNZBD_HOME} -s ${SABNZBD_BIND_ADDRESS}:${SABNZBD_PORT} ${SABNZBD_OPTS}
+/usr/bin/python3 -OO /sabnzbd/SABnzbd.py -f ${SABNZBD_HOME} -s ${SABNZBD_BIND_ADDRESS}:${SABNZBD_PORT} ${SABNZBD_OPTS}
 # REVIEW: Why execution is stopped here
 echo "[INFO] SABnzbd process started"
 
