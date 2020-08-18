@@ -45,6 +45,7 @@ build_images () {
 }
 
 install_prereqs () {
+  set -xv
   echo -e '\n<<< Installing (d)goss & trivy prerequisites >>>\n'
   # goss/dgoss (server-spec for containers)
   GOSS_VER=$(curl -s "https://api.github.com/repos/aelsabbahy/goss/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
