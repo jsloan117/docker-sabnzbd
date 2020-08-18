@@ -43,7 +43,7 @@ file:
     owner: root
     group: root
     filetype: file
-    size: 2220
+    size: 2221
     sha256: fdbd83013ba83102c3148c007dd9d2e9e54a335abffb9570a3e83bbc802928cb
   /scripts/create_cert.sh:
     exists: true
@@ -59,7 +59,7 @@ port:
     listening: true
 
 process:
-  python:
+  python3:
     running: true
 
 command:
