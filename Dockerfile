@@ -1,13 +1,13 @@
-FROM alpine:3.11
+FROM alpine:3.12
 LABEL Name=sabnzbd Maintainer="Jonathan Sloan"
 
-ARG SABVER=2.3.9
+ARG SABVER=3.0.0
 ARG PAR2=0.8.1
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
-RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python2 \
-                       py2-pip build-base libgomp libffi-dev openssl-dev automake autoconf python2-dev \
+RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python3 \
+                       py3-pip build-base libgomp libffi-dev openssl-dev automake autoconf python3-dev \
                        bash tini shadow supervisor \
     && pip --no-cache-dir install six cryptography enum34 cffi Cheetah3 pyOpenSSL \
     && wget -O- "https://github.com/sabnzbd/sabnzbd/releases/download/${SABVER}/SABnzbd-${SABVER}-src.tar.gz" | tar -zx \
@@ -24,7 +24,7 @@ RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python2 \
     && rm -rf "par2cmdline-${PAR2}" \
     && pip --no-cache-dir install --upgrade sabyenc \
     && echo "*** cleanup ***" \
-    && apk del build-base automake autoconf python2-dev \
+    && apk del build-base automake autoconf python3-dev \
     && rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/lib/apk/* "$HOME/.cache" \
     && useradd -u 911 -U -d /sabnzbd -s /bin/false abc
 

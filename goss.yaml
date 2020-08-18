@@ -44,7 +44,7 @@ file:
     group: root
     filetype: file
     size: 2220
-    sha256: fbffab60992d2e33c73992adb4fc472ebb8987d285731e74ab0e608ca93a317a
+    sha256: fdbd83013ba83102c3148c007dd9d2e9e54a335abffb9570a3e83bbc802928cb
   /scripts/create_cert.sh:
     exists: true
     mode: "0775"
@@ -67,7 +67,7 @@ command:
     exit-status: 0
     exec: "ps aux"
     stdout:
-      - "/usr/bin/python -OO /sabnzbd/SABnzbd.py"
+      - "/usr/bin/python3 -OO /sabnzbd/SABnzbd.py"
     stderr: []
     timeout: 3000
 
