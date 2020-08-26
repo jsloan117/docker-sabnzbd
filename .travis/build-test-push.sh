@@ -3,7 +3,11 @@
 
 set -euo pipefail
 
-if [ "${TRAVIS_BRANCH}" = master ]; then
+if [[ "${ENABLE_DEBUG}" = true ]]; then
+  set -xv
+fi
+
+if [[ "${TRAVIS_BRANCH}" = master ]]; then
   IMAGE_TAG=latest
 else
   IMAGE_TAG="${TRAVIS_BRANCH}"
