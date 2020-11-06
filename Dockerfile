@@ -1,7 +1,7 @@
 FROM alpine:3.12
 LABEL Name=sabnzbd Maintainer="Jonathan Sloan"
 
-ARG SABVER=3.0.2
+ARG SABVER=3.1.0
 ARG PAR2=0.8.1
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
