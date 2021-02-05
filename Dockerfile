@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:3.13
 LABEL Name=sabnzbd Maintainer="Jonathan Sloan"
 
 ARG SABVER=3.1.1
