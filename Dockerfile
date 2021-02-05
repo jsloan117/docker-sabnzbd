@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:3.13
 LABEL Name=sabnzbd Maintainer="Jonathan Sloan"
 
 ARG SABVER=3.1.1
@@ -9,7 +9,7 @@ SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python3 python3-dev py3-pip \
                     py3-cheetah py3-cryptography py3-feedparser py3-configobj py3-chardet py3-wheel \
                     build-base libgomp libffi-dev openssl-dev automake autoconf bash tini shadow supervisor \
-    && pip3 --no-cache-dir install cherrypy portend notify2 sabyenc3 cheroot==8.4.2 \
+    && pip3 --no-cache-dir install cherrypy portend notify2 sabyenc3 cheroot \
     && wget -O- "https://github.com/sabnzbd/sabnzbd/releases/download/${SABVER}/SABnzbd-${SABVER}-src.tar.gz" | tar -zx \
     && mv "SABnzbd-${SABVER}/" /sabnzbd \
     && /usr/bin/python3 /sabnzbd/tools/make_mo.py \
