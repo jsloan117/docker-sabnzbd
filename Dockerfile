@@ -1,7 +1,6 @@
 FROM alpine:3.13
-LABEL Name=sabnzbd Maintainer="Jonathan Sloan"
 
-ARG SABVER=3.1.1
+ARG SABVER=3.2.1
 ARG PAR2=0.8.1
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
@@ -10,10 +9,10 @@ RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python3 python3
                     py3-cheetah py3-cryptography py3-feedparser py3-configobj py3-chardet py3-wheel \
                     build-base libgomp libffi-dev openssl-dev automake autoconf bash tini shadow supervisor \
     && pip3 --no-cache-dir install cherrypy portend notify2 sabyenc3 cheroot \
-    && wget -O- "https://github.com/sabnzbd/sabnzbd/releases/download/${SABVER}/SABnzbd-${SABVER}-src.tar.gz" | tar -zx \
+    && wget -q -O- "https://github.com/sabnzbd/sabnzbd/releases/download/${SABVER}/SABnzbd-${SABVER}-src.tar.gz" | tar -zx \
     && mv "SABnzbd-${SABVER}/" /sabnzbd \
     && /usr/bin/python3 /sabnzbd/tools/make_mo.py \
-    && wget -O- "https://github.com/Parchive/par2cmdline/releases/download/v${PAR2}/par2cmdline-${PAR2}.tar.gz" | tar -zx \
+    && wget -q -O- "https://github.com/Parchive/par2cmdline/releases/download/v${PAR2}/par2cmdline-${PAR2}.tar.gz" | tar -zx \
     && cd "par2cmdline-${PAR2}" \
     && aclocal \
     && automake --add-missing \
@@ -30,7 +29,7 @@ RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python3 python3
 
 COPY configs /configs
 COPY scripts /scripts
-COPY VERSION .
+COPY VERSION /
 
 ENV SABNZBD_HOME="/config" \
     SABNZBD_BIND_ADDRESS="0.0.0.0" \
