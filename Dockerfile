@@ -1,6 +1,6 @@
-FROM alpine:3.13
+FROM alpine:3.14
 
-ARG SABVER=3.3.0
+ARG SABVER=3.3.1
 ARG PAR2=0.8.1
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
