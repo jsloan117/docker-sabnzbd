@@ -1,14 +1,17 @@
-FROM alpine:3.13
+FROM alpine:3.14
 
 ARG SABVER=3.4.2
 ARG PAR2=0.8.1
+ARG S6_OVERLAY_RELEASE=https://github.com/just-containers/s6-overlay/releases/latest/download/s6-overlay-amd64.tar.gz
+ENV S6_OVERLAY_RELEASE=${S6_OVERLAY_RELEASE}
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
-RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python3 python3-dev py3-pip \
+RUN apk upgrade --update && apk add --no-cache ca-certificates openssl unzip unrar p7zip python3 python3-dev py3-pip \
                     py3-cheetah py3-cryptography py3-feedparser py3-configobj py3-chardet py3-wheel \
-                    build-base libgomp libffi-dev openssl-dev automake autoconf bash tini shadow \
+                    build-base libgomp libffi-dev openssl-dev automake autoconf bash shadow \
     && pip3 --no-cache-dir install --upgrade pip \
+    && wget -q -O- ${S6_OVERLAY_RELEASE} | tar -zx -C / \
     && wget -q -O- "https://github.com/sabnzbd/sabnzbd/releases/download/${SABVER}/SABnzbd-${SABVER}-src.tar.gz" | tar -zx \
     && mv "SABnzbd-${SABVER}/" /sabnzbd \
     && python3 -m pip --no-cache-dir install -r /sabnzbd/requirements.txt -U \
@@ -55,5 +58,5 @@ ENV SABNZBD_HOME="/config" \
 
 VOLUME /config /data
 EXPOSE 8080
-ENTRYPOINT [ "/sbin/tini", "--" ]
-CMD [ "/bin/bash", "/scripts/sabnzbd.sh" ]
+ENTRYPOINT [ "/init" ]
+# CMD [ "/bin/bash", "/scripts/sabnzbd.sh" ]

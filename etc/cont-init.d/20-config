@@ -1,0 +1,14 @@
+#!/usr/bin/with-contenv bash
+
+# make folders
+mkdir -p \
+    "$SAB_DOWNLOAD_DIR" \
+    "$SAB_INCOMPLETE_DIR" \
+    "$SAB_WATCH_DIR"
+
+# permissions
+chown abc:abc \
+    "$SAB_DOWNLOAD_DIR" \
+    "$SAB_INCOMPLETE_DIR" \
+    "$SAB_WATCH_DIR"
+

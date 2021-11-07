@@ -1,0 +1,6 @@
+#!/bin/bash
+
+exec s6-setuidgid abc \
+  /usr/bin/python3 -OO /sabnzbd/SABnzbd.py -f ${SABNZBD_HOME} \
+  -s ${SABNZBD_BIND_ADDRESS}:${SABNZBD_PORT} ${SABNZBD_OPTS}
+
