@@ -9,9 +9,9 @@ RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python3 python3
                     py3-cheetah py3-cryptography py3-feedparser py3-configobj py3-chardet py3-wheel \
                     build-base libgomp libffi-dev openssl-dev automake autoconf bash tini shadow \
     && pip3 --no-cache-dir install --upgrade pip \
-    && python3 -m pip --no-cache-dir install -r requirements.txt -U \
     && wget -q -O- "https://github.com/sabnzbd/sabnzbd/releases/download/${SABVER}/SABnzbd-${SABVER}-src.tar.gz" | tar -zx \
     && mv "SABnzbd-${SABVER}/" /sabnzbd \
+    && python3 -m pip --no-cache-dir install -r /sabnzbd/requirements.txt -U \
     && /usr/bin/python3 /sabnzbd/tools/make_mo.py \
     && wget -q -O- "https://github.com/Parchive/par2cmdline/releases/download/v${PAR2}/par2cmdline-${PAR2}.tar.gz" | tar -zx \
     && cd "par2cmdline-${PAR2}" \
