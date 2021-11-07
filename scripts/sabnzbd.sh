@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# ensure ownership & permissions are correctly set
+/scripts/usersetup.sh
+
 # if config file doesnt exist (wont exist until started 1st time) then copy default config file
 if [[ ! -f "${SABNZBD_HOME}/sabnzbd.ini" ]]; then
   echo -e "\n[INFO] SABnzbd config file doesn't exist, copying default"
@@ -42,15 +45,5 @@ if [[ -n "${SAB_NZB_BACKUP}" ]]; then
   sed -i "s|nzb_backup_dir = \(.*\)|nzb_backup_dir = ${SAB_NZB_BACKUP}|" "${SABNZBD_HOME}/sabnzbd.ini"
 fi
 
-echo -e "\n[INFO] Starting SABnzbd..."
-# run sabnzbd daemon
-/usr/bin/python3 -OO /sabnzbd/SABnzbd.py -f ${SABNZBD_HOME} -s ${SABNZBD_BIND_ADDRESS}:${SABNZBD_PORT} ${SABNZBD_OPTS}
-# REVIEW: Why execution is stopped here
-echo "[INFO] SABnzbd process started"
+exec /usr/bin/python3 -OO /sabnzbd/SABnzbd.py -f ${SABNZBD_HOME} -s ${SABNZBD_BIND_ADDRESS}:${SABNZBD_PORT} ${SABNZBD_OPTS}
 
-echo "[INFO] Waiting for SABnzbd process to start listening on port ${SABNZBD_PORT}..."
-while [[ $(netstat -lnt | awk "\$6 == \"LISTEN\" && \$4 ~ \".\${SABNZBD_PORT}\"") ]]; do
-  sleep 0.1
-done
-
-echo -e "[INFO] SABnzbd process listening on port ${SABNZBD_PORT}\n"

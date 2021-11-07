@@ -5,54 +5,24 @@ file:
     owner: abc
     group: abc
     filetype: file
-  /etc/supervisor.conf:
-    exists: true
-    mode: "0644"
-    owner: root
-    group: root
-    filetype: file
-    size: 226
-    sha256: 45fde776a5b19612126711ba4ca9aff150d08eb559fcf2a8fd49c7e074f90c7c
-  /etc/supervisor/conf.d/sabnzbd.conf:
-    exists: true
-    mode: "0644"
-    owner: root
-    group: root
-    filetype: file
-    size: 236
-    sha256: b2793dadf133038a75a5de8d378747c19b42650433df4303febaf1ecd0eaf754
-  /scripts/init.sh:
-    exists: true
-    mode: "0775"
-    owner: root
-    group: root
-    filetype: file
-    size: 1145
-    sha256: bfa42e229d22c8a9f65b8d03a529a1c79c76f137cc754ae10a55544baa81d5b3
   /scripts/usersetup.sh:
     exists: true
     mode: "0775"
     owner: root
     group: root
     filetype: file
-    size: 1396
-    sha256: 6b481c6c8cbb104642c48b3d701919e298b0186d26586b81319a059e5944944c
   /scripts/sabnzbd.sh:
     exists: true
     mode: "0775"
     owner: root
     group: root
     filetype: file
-    size: 2221
-    sha256: fdbd83013ba83102c3148c007dd9d2e9e54a335abffb9570a3e83bbc802928cb
   /scripts/create_cert.sh:
     exists: true
     mode: "0775"
     owner: root
     group: root
     filetype: file
-    size: 611
-    sha256: 46cd071de306aceb41c223f7fc06b2200b050fab432d4e15226170e8537782c6
 
 port:
   tcp:8080:

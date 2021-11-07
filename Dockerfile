@@ -7,8 +7,9 @@ SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
 RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python3 python3-dev py3-pip \
                     py3-cheetah py3-cryptography py3-feedparser py3-configobj py3-chardet py3-wheel \
-                    build-base libgomp libffi-dev openssl-dev automake autoconf bash tini shadow supervisor \
-    && pip3 --no-cache-dir install cherrypy portend notify2 sabyenc3 cheroot \
+                    build-base libgomp libffi-dev openssl-dev automake autoconf bash tini shadow \
+    && pip3 --no-cache-dir install --upgrade pip \
+    && python3 -m pip --no-cache-dir install -r requirements.txt -U \
     && wget -q -O- "https://github.com/sabnzbd/sabnzbd/releases/download/${SABVER}/SABnzbd-${SABVER}-src.tar.gz" | tar -zx \
     && mv "SABnzbd-${SABVER}/" /sabnzbd \
     && /usr/bin/python3 /sabnzbd/tools/make_mo.py \
@@ -23,7 +24,7 @@ RUN apk add --no-cache ca-certificates openssl unzip unrar p7zip python3 python3
     && cd .. \
     && rm -rf "par2cmdline-${PAR2}" \
     && echo "*** cleanup ***" \
-    && apk del build-base automake autoconf python3-dev \
+    && apk del build-base automake autoconf python3-dev libffi-dev openssl-dev libgomp \
     && rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/lib/apk/* "$HOME/.cache" \
     && useradd -u 911 -U -d /sabnzbd -s /bin/false abc
 
@@ -55,4 +56,4 @@ ENV SABNZBD_HOME="/config" \
 VOLUME /config /data
 EXPOSE 8080
 ENTRYPOINT [ "/sbin/tini", "--" ]
-CMD [ "/bin/bash", "/scripts/init.sh" ]
+CMD [ "/bin/bash", "/scripts/sabnzbd.sh" ]
