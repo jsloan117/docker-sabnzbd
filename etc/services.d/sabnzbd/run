@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/with-contenv bash
 
 exec s6-setuidgid abc \
   /usr/bin/python3 -OO /sabnzbd/SABnzbd.py -f ${SABNZBD_HOME} \

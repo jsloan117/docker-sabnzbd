@@ -8,8 +8,7 @@ ENV S6_OVERLAY_RELEASE=${S6_OVERLAY_RELEASE}
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
 RUN apk upgrade --update && apk add --no-cache ca-certificates openssl unzip unrar p7zip python3 python3-dev py3-pip \
-                    py3-cheetah py3-cryptography py3-feedparser py3-configobj py3-chardet py3-wheel \
-                    build-base libgomp libffi-dev openssl-dev automake autoconf bash shadow \
+                                               build-base libgomp libffi-dev openssl-dev automake autoconf bash shadow \
     && pip3 --no-cache-dir install --upgrade pip \
     && wget -q -O- ${S6_OVERLAY_RELEASE} | tar -zx -C / \
     && wget -q -O- "https://github.com/sabnzbd/sabnzbd/releases/download/${SABVER}/SABnzbd-${SABVER}-src.tar.gz" | tar -zx \
@@ -27,10 +26,11 @@ RUN apk upgrade --update && apk add --no-cache ca-certificates openssl unzip unr
     && cd .. \
     && rm -rf "par2cmdline-${PAR2}" \
     && echo "*** cleanup ***" \
-    && apk del build-base automake autoconf python3-dev libffi-dev openssl-dev libgomp \
+    && apk del build-base automake autoconf python3-dev libffi-dev openssl-dev \
     && rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/lib/apk/* "$HOME/.cache" \
     && useradd -u 911 -U -d /sabnzbd -s /bin/false abc
 
+COPY etc /etc
 COPY configs /configs
 COPY scripts /scripts
 COPY VERSION /
@@ -59,4 +59,3 @@ ENV SABNZBD_HOME="/config" \
 VOLUME /config /data
 EXPOSE 8080
 ENTRYPOINT [ "/init" ]
-# CMD [ "/bin/bash", "/scripts/sabnzbd.sh" ]
